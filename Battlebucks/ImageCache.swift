@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ImageCache {
+final class ImageCache {
   private var cache = NSCache<NSString, UIImage>()
   
   func getImage(for url: String) -> UIImage? {

@@ -11,6 +11,6 @@ struct ImageItem: Codable, Identifiable {
   let id: Int
   let albumId: Int
   let title: String
-  let url: URL
-  let thumbnailUrl: URL
+  let url: String
+  let thumbnailUrl: String
 }

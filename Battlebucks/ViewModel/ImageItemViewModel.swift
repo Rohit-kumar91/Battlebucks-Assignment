@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 final class ImageViewModel: ObservableObject {
   @Published var images: [ImageItem] = []
   @Published var isLoading = false

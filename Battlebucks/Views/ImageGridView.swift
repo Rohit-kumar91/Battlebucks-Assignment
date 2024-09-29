@@ -33,21 +33,20 @@ struct GridView: View {
   
   var body: some View {
     let columns = [
-      GridItem(.flexible()),
-      GridItem(.flexible()),
-      GridItem(.flexible())
+      GridItem(.flexible(), spacing: 5),
+      GridItem(.flexible(), spacing: 5),
+      GridItem(.flexible(), spacing: 5)
     ]
     
     ScrollView {
-      LazyVGrid(columns: columns) {
+      LazyVGrid(columns: columns, spacing: 5) {
         ForEach(images) { image in
-          NavigationLink(destination: ImageDetailView(image: image)) {
+          NavigationLink(destination: ImageDetailView(images: images,
+                                                      currentIndex: images.firstIndex(where: { $0.id == image.id })!)) {
             AsyncImageView(url: image.url)
               .aspectRatio(contentMode: .fill)
-              .frame(height: 150)
               .clipped()
-          }
-        }
+          }        }
       }
     }
   }

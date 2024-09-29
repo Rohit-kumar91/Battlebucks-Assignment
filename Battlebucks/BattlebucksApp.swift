@@ -11,7 +11,7 @@ import SwiftUI
 struct BattlebucksApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+          ImageGridView()
         }
     }
 }

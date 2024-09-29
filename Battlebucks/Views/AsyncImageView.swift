@@ -17,7 +17,7 @@ struct AsyncImageView: View {
         Image(uiImage: image)
           .resizable()
       } else {
-        Color.gray // Placeholder
+        Color.gray.opacity(0.4) // Placeholder
           .onAppear {
             Task {
               self.image = await loadImage()
@@ -38,7 +38,6 @@ struct AsyncImageView: View {
     }
   }
 }
-
 
 #Preview {
   AsyncImageView(url: "https://via.placeholder.com/150/5e12c6")

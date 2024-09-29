@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@MainActor
 final class ImageViewModel: ObservableObject {
   @Published var images: [ImageItem] = []
   @Published var isLoading = false
@@ -18,6 +17,7 @@ final class ImageViewModel: ObservableObject {
   
   init(networkManager: Networking = NetworkManager()) {
     self.networkManager = networkManager
+    
     fetchImages()
   }
   
@@ -26,11 +26,16 @@ final class ImageViewModel: ObservableObject {
       isLoading = true
       do {
         let images = try await networkManager.fetchImages()
-        self.images = images
+        DispatchQueue.main.async {
+          self.images = images
+          self.isLoading = false
+        }
       } catch {
-        self.errorMessage = error.localizedDescription
+        DispatchQueue.main.async {
+          self.errorMessage = error.localizedDescription
+          self.isLoading = false
+        }
       }
-      isLoading = false
     }
   }
   
